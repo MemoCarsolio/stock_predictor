@@ -1,7 +1,7 @@
-import json
-import requests
-import yfinance as yf
+# python imports
 from datetime import datetime
+# third party imports
+import yfinance as yf
 
 
 class Stock():
@@ -14,6 +14,10 @@ class Stock():
 
     stock_name: str,
         the name of the stock that you are going to retrieve information
+    start_date: datetime.date,
+            initial date that you want the histroic of the stocks to start
+        end_date: datetime.date,
+            initial date that you want the histroic of the stocks to start
 
     """
 
@@ -22,7 +26,6 @@ class Stock():
         stock_name: str,
         start_date: datetime,
         end_date: datetime,
-        is_target: bool = False
     ):
         if start_date == None or end_date == None:
             raise('Date values must selected')
@@ -31,11 +34,16 @@ class Stock():
         self.ticker = yf.Ticker(stock_name)
         self.start_date = start_date.strftime('%Y-%m-%d')
         self.end_date = end_date.strftime('%Y-%m-%d')
-        self.is_target = is_target
 
     def get_historic(self):
         """
         Get Historic
+        ------------
+
+        Returns
+        -------
+        df: pd.Daframe,
+            historic dataframe
 
         """
         print("Getting: ", self.name, " from ",

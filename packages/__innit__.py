@@ -1,3 +1,3 @@
 from stocks import Stock
-from dataset import DatasetConstructur
+from dataset import DatasetConstructor
 from rnn import RNN
